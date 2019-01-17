@@ -1,0 +1,46 @@
+server:
+  port: 9011
+spring:
+  application:
+    name: tensquare-manager #指定服务名
+eureka:
+  client:
+    serviceUrl: #Eureka客户端与Eureka服务端进行交互的地址
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
+zuul:
+  #路由定义
+  routes:
+    #可以随便写，在zuul上面唯一即可；当这里的值 = service-id时，service-id可以不写。
+    tensquare-base: #基础
+      #想要映射到的路径，配置请求URL的请求规则
+      path: /base/**
+      #Eureka中的serviceId,指定Eureka注册中心中的服务id
+      serviceId: tensquare-base #指定Eureka注册中心中的服务id
+    tensquare-article: #文章
+      #想要映射到的路径，配置请求URL的请求规则
+      path: /article/**
+      #Eureka中的serviceId,指定Eureka注册中心中的服务id
+      serviceId: tensquare-article
+    tensquare-gathering: #活动
+      path: /gathering/** #配置请求URL的请求规则
+      serviceId: tensquare-gathering #指定Eureka注册中心中的服务id
+    tensquare-friend: #交友
+      path: /friend/** #配置请求URL的请求规则
+      serviceId: tensquare-friend #指定Eureka注册中心中的服务id
+    tensquare-qa: #问答
+      path: /qa/** #配置请求URL的请求规则
+      serviceId: tensquare-qa #指定Eureka注册中心中的服务id
+    tensquare-recruit: #招聘
+      path: /recruit/** #配置请求URL的请求规则
+      serviceId: tensquare-recruit #指定Eureka注册中心中的服务id
+    tensquare-spit: #吐槽
+      path: /spit/** #配置请求URL的请求规则
+      serviceId: tensquare-spit #指定Eureka注册中心中的服务id
+    tensquare-user: #用户
+      path: /user/** #配置请求URL的请求规则
+      serviceId: tensquare-user #指定Eureka注册中心中的服务id
+jwt:
+  config:
+    key: itcast
